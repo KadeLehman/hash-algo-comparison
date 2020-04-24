@@ -1,4 +1,4 @@
-# Performance Comparison of Various Hashing Algorithms
+# Performance Comparison of Two Hashing Algorithms with Integer Keys
 
 This project will put two hashing algorithms to the test; one is trivial, one is non-trivial.
 Here is a description of the trivial algorithm, as stated on Wikipedia:
@@ -7,9 +7,14 @@ Here is a description of the trivial algorithm, as stated on Wikipedia:
 so that the key values are essentially random, they may be considered to be already 'hashed'.
 In this case, any number of any bits in the key may be dialed out and collated as an index
 into the hash table. A simple such hash function would be to mask off the bottom m bits
-to use as an index into a table of size 2m.
+to use as an index into a table of size 2^m.
 
 Here is a description of the Fowler–Noll–Vo algorithm (I chose the 1a version, because data hashed
-through version 1 is easier to decrypt and has the same runtime as version 1a):
+through version 1 is easier to decrypt and has the same runtime as version 1a. However, this
+algorithm is still relatively easy to crack and is regarded as a non-cryptographic hash function):
 
-> 
+> Sample text
+
+Note that the trivial hash function will cause many collisions if the key space contains many clumps,
+i.e. that the collection of integers to be inserted is unevenly distributed. Also, the FNV algorithm
+`(...continue here...also I remind you of your planning page in your algorithms notebook...)`
