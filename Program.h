@@ -2,9 +2,8 @@
 #define PROGRAM_H
 
 #include <iostream>
-#include <utility>
 #include <string>
-#include <sstream>
+#include <vector>
 #include <fstream>
 #include <cstdint>
 
@@ -12,15 +11,17 @@ using namespace std;
 
 class Program {
 private:
-    //Hash Table
-    uint16_t tempUnsigned;
+    //Hash Table for Trivial Algo
+    //Hash Table for FNV Algo
+    string iFileName;
+    vector<uint64_t> data;
 
 public:
     Program();
     void run();
     void readControlFile();
-    void readGraphFile(int);
-    void testAllGraphs();
+    void readIntFile();
+    void testAlgorithms();
 };
 
 #endif //PROGRAM_H
