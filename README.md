@@ -22,5 +22,3 @@ FNV you choose and based on mathematical procedures that the creators of FNV hav
 Note that the trivial hash function will cause many hashtable collisions if the key space contains
 many clumps, i.e. that the collection of integers to be inserted is unevenly distributed. Also,
 any hash function will cause many collisions if many duplicate values are inserted.
-
-`(...I remind you of your planning page in your algorithms notebook...)`

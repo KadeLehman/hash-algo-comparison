@@ -17,4 +17,4 @@ set(CMAKE_CXX_FLAGS "-Wall")
 # endforeach()
 
 set(CMAKE_CXX_STANDARD 14)
-add_executable(${EXE_NAME} main.cpp)
+add_executable(${EXE_NAME} main.cpp Program.h Program.cpp)
