@@ -2,6 +2,6 @@
 using namespace std;
 
 int main() {
-    cout << "Program finished with no runtime errors." << endl;
+    cout << endl << "Program finished with no runtime errors." << endl;
     return 0;
 }
