@@ -14,9 +14,8 @@ protected:
     uint32_t numNonEmptyLists;
     uint64_t hashVal;
     virtual uint64_t hash(uint64_t) = 0;
-    explicit HashTable() { exit(200); }
 public:
-    explicit HashTable(uint32_t);
+    HashTable();
     virtual void insert(uint64_t) = 0;
 };
 
@@ -25,7 +24,9 @@ private:
     uint64_t hash(uint64_t) override;
     forward_list<uint64_t> * lists;
 public:
-    explicit TrivialHashTable(uint32_t numTotalLists) : HashTable(numTotalLists) {
+    explicit TrivialHashTable(uint32_t numIntegers) : HashTable() {
+        numTotalLists = numIntegers;
+        //round up numTotalLists to nearest power of two
         lists = new forward_list<uint64_t> [numTotalLists];
     }
     ~TrivialHashTable() {
@@ -39,7 +40,9 @@ private:
     uint64_t hash(uint64_t) override;
     forward_list<uint64_t> * lists;
 public:
-    explicit FNVHashTable(uint32_t numTotalLists) : HashTable(numTotalLists) {
+    explicit FNVHashTable(uint32_t numIntegers) : HashTable() {
+        numTotalLists = numIntegers;
+        //look at FNV wiki page for how to determine size of hash table (i.e. how to modify numTotalLists)
         lists = new forward_list<uint64_t> [numTotalLists];
     }
     ~FNVHashTable() {
