@@ -6,7 +6,6 @@ HashTable::HashTable(uint32_t numIntegers) {
     hashVal = 0;
 }
 
-/*
 void TrivialHashTable::insert(uint64_t val) {
     hashVal = hash(val);
     lists[hashVal].push_front(val);
@@ -16,7 +15,6 @@ void FNVHashTable::insert(uint64_t val) {
     hashVal = hash(val);
     lists[hashVal].push_front(val);
 }
- */
 
 uint64_t TrivialHashTable::hash(uint64_t val) {
     //mask bottom six bits into table of size (2^6 = 64)

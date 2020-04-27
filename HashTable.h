@@ -17,7 +17,7 @@ protected:
     explicit HashTable() { exit(200); }
 public:
     explicit HashTable(uint32_t);
-    //virtual void insert(uint64_t) = 0;
+    virtual void insert(uint64_t) = 0;
 };
 
 class TrivialHashTable : public HashTable {
@@ -31,7 +31,7 @@ public:
     ~TrivialHashTable() {
         delete [] lists;
     }
-    //void insert(uint64_t) override;
+    void insert(uint64_t) override;
 };
 
 class FNVHashTable : public HashTable {
@@ -45,7 +45,7 @@ public:
     ~FNVHashTable() {
         delete [] lists;
     }
-    //void insert(uint64_t) override;
+    void insert(uint64_t) override;
 };
 
 #endif //HASHTABLE_H
