@@ -11,8 +11,8 @@ using namespace std;
 
 class Program {
 private:
-    //Hash Table for Trivial Algo
-    //Hash Table for FNV Algo
+    HashTable * trivialHashTable;
+    HashTable * FNVHashTable;
     string iFileName;
     vector<uint64_t> data;
 
