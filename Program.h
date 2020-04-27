@@ -15,7 +15,6 @@ private:
     HashTable * hashTableFNV;
     string iFileName;
     vector<uint64_t> data;
-
 public:
     Program();
     void run();

@@ -12,10 +12,10 @@ class HashTable {
 private:
     forward_list<uint64_t> * lists[40];
     uint64_t hashVal;
-    virtual uint64_t hash(uint64_t);
+    virtual uint64_t hash(uint64_t) = 0;
 public:
     HashTable();
-    virtual ~HashTable();
+    ~HashTable();
     void insert(uint64_t);
 };
 
@@ -23,16 +23,14 @@ class TrivialHashTable : public HashTable {
 private:
     uint64_t hash(uint64_t) override;
 public:
-    //constructor
-    //destructor
+    TrivialHashTable() : HashTable() {}
 };
 
 class FNVHashTable : public HashTable {
 private:
     uint64_t hash(uint64_t) override;
 public:
-    //constructor
-    //destructor
+    FNVHashTable() : HashTable() {}
 };
 
 #endif //HASHTABLE_H
