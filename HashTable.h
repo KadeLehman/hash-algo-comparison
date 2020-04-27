@@ -9,28 +9,43 @@
 using namespace std;
 
 class HashTable {
-private:
-    forward_list<uint64_t> * lists[40];
+protected:
+    uint32_t numTotalLists;
+    uint32_t numNonEmptyLists;
     uint64_t hashVal;
     virtual uint64_t hash(uint64_t) = 0;
+    explicit HashTable() { exit(200); }
 public:
-    HashTable();
-    ~HashTable();
-    void insert(uint64_t);
+    explicit HashTable(uint32_t);
+    //virtual void insert(uint64_t) = 0;
 };
 
 class TrivialHashTable : public HashTable {
 private:
     uint64_t hash(uint64_t) override;
+    forward_list<uint64_t> * lists;
 public:
-    TrivialHashTable() : HashTable() {}
+    explicit TrivialHashTable(uint32_t numTotalLists) : HashTable(numTotalLists) {
+        lists = new forward_list<uint64_t> [numTotalLists];
+    }
+    ~TrivialHashTable() {
+        delete [] lists;
+    }
+    //void insert(uint64_t) override;
 };
 
 class FNVHashTable : public HashTable {
 private:
     uint64_t hash(uint64_t) override;
+    forward_list<uint64_t> * lists;
 public:
-    FNVHashTable() : HashTable() {}
+    explicit FNVHashTable(uint32_t numTotalLists) : HashTable(numTotalLists) {
+        lists = new forward_list<uint64_t> [numTotalLists];
+    }
+    ~FNVHashTable() {
+        delete [] lists;
+    }
+    //void insert(uint64_t) override;
 };
 
 #endif //HASHTABLE_H
