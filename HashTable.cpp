@@ -16,6 +16,7 @@ void FNVHashTable::insert(uint64_t val) {
     lists[hashVal].push_front(val);
 }
 
+//Trivial Hash Algorithm
 uint64_t TrivialHashTable::hash(uint64_t val) {
     //TODO: mask bottom log2(tableSize) bits
     return 0;
@@ -32,6 +33,7 @@ uint32_t TrivialHashTable::roundUpBaseTwo(uint32_t num) {
     return num;
 }
 
+//Fowler–Noll–Vo 1a Hash Algorithm
 uint64_t FNVHashTable::hash(uint64_t val) {
     return 0;
 }
