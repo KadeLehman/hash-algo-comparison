@@ -11,8 +11,8 @@ using namespace std;
 
 class Program {
 private:
-    HashTable * trivialHashTable;
-    HashTable * FNVHashTable;
+    HashTable * hashTableTrivial;
+    HashTable * hashTableFNV;
     string iFileName;
     vector<uint64_t> data;
 

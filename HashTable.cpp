@@ -5,7 +5,6 @@ HashTable::HashTable() {
         list = new forward_list<uint64_t>;
     }
     hashVal = 0;
-    isTrivialHashing = false;
 }
 
 HashTable::~HashTable() {
@@ -14,24 +13,15 @@ HashTable::~HashTable() {
     }
 }
 
-void HashTable::setTrivialHashing() {
-    isTrivialHashing = true;
+void HashTable::insert(uint64_t val) {
+    hashVal = hash(val);
+    lists[hashVal]->push_front(val);
 }
 
-void HashTable::trivialInsert(uint64_t val) {
-    //hashVal = trivialHash(val);
-    //lists[hashVal]->push_front(val);
+uint64_t TrivialHashTable::hash(uint64_t val) {
+    return 0;
 }
 
-void HashTable::FNVInsert(uint64_t val) {
-    //hashVal = FNVHash(val);
-    //lists[hashVal]->push_front(val);
-}
-
-void HashTable::trivialHash(uint64_t val) {
-
-}
-
-void HashTable::FNVHash(uint64_t val) {
-
+uint64_t FNVHashTable::hash(uint64_t val) {
+    return 0;
 }
