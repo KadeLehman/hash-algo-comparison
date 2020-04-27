@@ -1,11 +1,14 @@
+/// Citations:
+///     Code for TrivialHashTable::roundUpBaseTwo from https://stackoverflow.com/a/466242/10252771
+
 #ifndef HASHTABLE_H
 #define HASHTABLE_H
 
 #include <iostream>
-#include <string>
 #include <vector>
 #include <forward_list>
 #include <cstdint>
+#include <cmath>
 using namespace std;
 
 class HashTable {
@@ -22,12 +25,16 @@ public:
 class TrivialHashTable : public HashTable {
 private:
     uint64_t hash(uint64_t) override;
+    uint32_t roundUpBaseTwo(uint32_t);
     forward_list<uint64_t> * lists;
+    short numBitsToMask;
 public:
     explicit TrivialHashTable(uint32_t numIntegers) : HashTable() {
+        //Trivial hash algorithm uses a table size that is a power of two.
         numTotalLists = numIntegers;
-        //round up numTotalLists to nearest power of two
+        numTotalLists = roundUpBaseTwo(numTotalLists);
         lists = new forward_list<uint64_t> [numTotalLists];
+        numBitsToMask = log2(numTotalLists);
     }
     ~TrivialHashTable() {
         delete [] lists;
