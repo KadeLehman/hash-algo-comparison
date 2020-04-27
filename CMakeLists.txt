@@ -13,4 +13,4 @@ foreach(file IN LISTS input01 input02)
 endforeach()
 
 set(CMAKE_CXX_STANDARD 14)
-add_executable(${EXE_NAME} main.cpp Program.h Program.cpp)
+add_executable(${EXE_NAME} main.cpp Program.h Program.cpp HashTable.h HashTable.cpp)

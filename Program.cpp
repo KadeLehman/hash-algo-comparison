@@ -52,7 +52,7 @@ void Program::readIntFile() {
 }
 
 void Program::testAlgorithms() {
-    cout << "In testAllGraphs() function..." << endl;
-    //TODO: Run both algorithms with the integer data
+    cout << "In testAlgorithms() function..." << endl;
+    //TODO: Insert integers from vector into first hash table, then the second one.
     //TODO: Implement std::chrono, which will print algorithm runtimes to the terminal.
 }

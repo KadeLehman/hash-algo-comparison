@@ -6,7 +6,7 @@
 #include <vector>
 #include <fstream>
 #include <cstdint>
-
+#include "HashTable.h"
 using namespace std;
 
 class Program {
