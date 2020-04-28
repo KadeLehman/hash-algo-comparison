@@ -19,6 +19,7 @@ protected:
     virtual uint64_t hash(uint64_t) = 0;
 public:
     HashTable();
+    virtual ~HashTable() = default;
     virtual void insert(uint64_t) = 0;
 };
 
@@ -36,7 +37,7 @@ public:
         lists = new forward_list<uint64_t> [numTotalLists];
         numBitsToMask = log2(numTotalLists);
     }
-    ~TrivialHashTable() {
+    ~TrivialHashTable() override {
         delete [] lists;
     }
     void insert(uint64_t) override;
@@ -52,7 +53,7 @@ public:
         //look at FNV wiki page for how to determine size of hash table (i.e. how to modify numTotalLists)
         lists = new forward_list<uint64_t> [numTotalLists];
     }
-    ~FNVHashTable() {
+    ~FNVHashTable() override {
         delete [] lists;
     }
     void insert(uint64_t) override;

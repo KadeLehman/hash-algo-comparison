@@ -53,8 +53,16 @@ void Program::readIntFile() {
 
 void Program::testAlgorithms() {
     cout << "In testAlgorithms() function..." << endl;
-    //TODO: Insert integers from vector into first hash table, then the second one.
-    //TODO: Implement std::chrono, which will print algorithm runtimes to the terminal.
     hashTableTrivial = new TrivialHashTable(data.size());
     hashTableFNV = new FNVHashTable(data.size());
+
+    //TODO: Insert integers from vector into first hash table, then the second one.
+    //TODO: Implement std::chrono, which will print algorithm runtimes to the terminal.
+
+    for (auto & num : data) {
+        hashTableTrivial->insert(num);
+    }
+
+    delete hashTableTrivial;
+    delete hashTableFNV;
 }
