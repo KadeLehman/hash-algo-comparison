@@ -9,6 +9,8 @@ In this case, any number of any bits in the key may be dialed out and collated a
 into the hash table. A simple such hash function would be to mask off the bottom m bits
 to use as an index into a table of size 2^m.
 
+For simplicity, I will implement the simple version as stated above.
+
 Here is an adapted description of the Fowler–Noll–Vo hash algorithm (I chose the 1a version, because data
 hashed through version 1 is easier to decrypt and has the same runtime as version 1a. However, this
 algorithm is still relatively easy to crack and is regarded as a non-cryptographic hash function):
