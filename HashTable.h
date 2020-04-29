@@ -5,7 +5,7 @@
 #define HASHTABLE_H
 
 #include <iostream>
-#include <vector>
+#include <array>
 #include <forward_list>
 #include <cstdint>
 #include <cmath>

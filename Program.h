@@ -17,6 +17,7 @@ private:
     vector<uint64_t> data;
 public:
     Program();
+    ~Program();
     void run();
     void readControlFile();
     void readIntFile();

@@ -1,7 +1,14 @@
 #include "Program.h"
 
 Program::Program() {
+    hashTableTrivial = nullptr;
+    hashTableFNV = nullptr;
     iFileName = "empty_I_FILE_NAME";
+}
+
+Program::~Program() {
+    delete hashTableTrivial;
+    delete hashTableFNV;
 }
 
 void Program::run() {
@@ -52,17 +59,16 @@ void Program::readIntFile() {
 }
 
 void Program::testAlgorithms() {
-    cout << "In testAlgorithms() function..." << endl;
     hashTableTrivial = new TrivialHashTable(data.size());
     hashTableFNV = new FNVHashTable(data.size());
 
-    //TODO: Insert integers from vector into first hash table, then the second one.
-    //TODO: Implement std::chrono, which will print algorithm runtimes to the terminal.
-
+    cout << "Inserting into trivial hash table..." << endl;
     for (auto & num : data) {
         hashTableTrivial->insert(num);
     }
+    cout << "Inserted all data into trivial hash table." << endl;
 
-    delete hashTableTrivial;
-    delete hashTableFNV;
+    //TODO: Insert integers from vector into second hash table.
+    //TODO: Make a better set of integers in aTonOfIntegers.txt
+    //TODO: Implement std::chrono, which will print algorithm runtimes to the terminal.
 }
