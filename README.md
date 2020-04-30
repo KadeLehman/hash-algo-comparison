@@ -1,4 +1,5 @@
 # Performance Comparison of Two Hashing Algorithms with Integer Keys
+## Introduction
 
 This project will put a trivial and non-trivial hashing algorithm to the test; integers
 from 100,000 to 599,999 (500,000 total integers) will be inserted into my custom hash table.
@@ -24,6 +25,18 @@ algorithm is still relatively easy to crack and is regarded as a non-cryptograph
 Both the FNV offset basis and FNV prime are pre-determined values based on what "bit flavor" of
 FNV you choose and were created through mathematical procedures that the creators of FNV developed.
 
+## Important Notes
+
 Note that the trivial hash function will cause many hashtable collisions if the key space contains
 many clumps, i.e. that the collection of integers to be inserted is unevenly distributed. Also,
 any hash function will cause many collisions if many duplicate values are inserted.
+
+Since the program is inserting 500,000 integers, it will round up the number 500,000 to the nearest
+power of two, which is 2^19 (524,288). I then divide this by 4 so that the hash table takes up less space,
+since the program then makes the hash table this size. The program then take the log-base-two of this new
+number to get 17, the number of bits to use as the hash for any given element being inserted into the table.
+The first two bits of each inserted integer are ignored, so the hash function just returns hash values in the range of
+zero to (tableSize - 1).
+
+TODO: DO THE ABOVE PARAGRAPH IN THE PROGRAM
+TODO: GENERATE NEW INTEGER LIST THAT IS UNEVENLY DISTRIBUTED (see Stack Overflow)
