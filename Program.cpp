@@ -85,18 +85,13 @@ void Program::testAlgorithms() {
     hashTableFNV = new FNVHashTable();
 
     cout << "Inserting into trivial hash table..." << endl;
-    for (auto & num : data) {
+    for (auto & num : data)
         hashTableTrivial->insert(num);
-    }
     cout << "Inserted all data into trivial hash table." << endl;
-
-    /*
     cout << "Inserting into FNV hash table..." << endl;
-    for (auto & num : data) {
+    for (auto & num : data)
         hashTableFNV->insert(num);
-    }
     cout << "Inserted all data into FNV hash table." << endl;
-     */
 
     //TODO: Implement std::chrono, which will print algorithm runtimes to the terminal.
 }

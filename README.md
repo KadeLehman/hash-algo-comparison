@@ -32,8 +32,11 @@ largest integer value I may be inserting is 599,999 which is 2^20 when rounded u
 ## Important Notes
 
 Note that the trivial hash function will cause many hashtable collisions if the collection of integers
-to be inserted is unevenly distributed. This is how my data is, so 
-Also, any hash function will cause many collisions if many duplicate values are inserted. The set of integers
+to be inserted is unevenly distributed. This is how my data is, so this weakness is reflected in the
+slower runtime of inserting my data into the trivial hash table. Also, any hash function will cause
+collisions when duplicate values are inserted, but both of my hash tables receive the same duplicates.
+As a result, this has negligible effect on the difference in performance of the trivial versus non-trivial
+algorithms.
 
 Here is another note specifically about my trivial hash function. Since the program is inserting 500,000
 integers, it will round up the number 500,000 to the nearest power of two, which is 2^19 (524,288). I then
