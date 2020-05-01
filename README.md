@@ -16,8 +16,8 @@ to use as an index into a table of size 2^m.
 
 For simplicity, I will implement the "simple" version as stated above in the last sentence.
 
-Below is an adapted description of the Fowler–Noll–Vo hash algorithm. I chose the 1a version, because data
-hashed through version 1 is easier to decrypt and has the same runtime as version 1a. However, this
+Below is an adapted description of the Fowler–Noll–Vo-1a hash algorithm. I chose the 1a version, because data
+hashed through this version is harder to decrypt and has the same runtime as FNV-1. However, this
 algorithm is still relatively easy to crack and is regarded as a non-cryptographic hash function:
 
 > Start with an initial hash value of the FNV offset basis. For each byte in the input, XOR
@@ -25,8 +25,8 @@ algorithm is still relatively easy to crack and is regarded as a non-cryptograph
 
 Both the FNV offset basis and FNV prime are pre-determined values based on what "bit flavor" of
 FNV you choose and were created through mathematical procedures that the creators of FNV developed.
-The FNV numbers help naturally reduce collisions since they help spread values evenly across the
-key space.
+The FNV numbers help naturally reduce collisions since they help spread inserted values evenly across the
+key space of the hash table.
 
 ## Important Notes
 

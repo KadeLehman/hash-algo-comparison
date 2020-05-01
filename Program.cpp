@@ -90,6 +90,13 @@ void Program::testAlgorithms() {
     }
     cout << "Inserted all data into trivial hash table." << endl;
 
-    //TODO: Insert integers from vector into second hash table.
+    /*
+    cout << "Inserting into FNV hash table..." << endl;
+    for (auto & num : data) {
+        hashTableFNV->insert(num);
+    }
+    cout << "Inserted all data into FNV hash table." << endl;
+     */
+
     //TODO: Implement std::chrono, which will print algorithm runtimes to the terminal.
 }

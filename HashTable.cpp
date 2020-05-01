@@ -41,5 +41,6 @@ uint32_t TrivialHashTable::roundUpBaseTwo(uint32_t num) {
 
 //Fowler–Noll–Vo 1a Hash Algorithm
 uint64_t FNVHashTable::hash(uint64_t val) {
-    return 0;
+    //do something to val
+    return val;
 }
