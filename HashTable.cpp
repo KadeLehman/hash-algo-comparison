@@ -6,18 +6,18 @@ HashTable::HashTable() {
     hashVal = 0;
 }
 
-void TrivialHashTable::insert(uint64_t val) {
+void TrivialHashTable::insert(uint32_t val) {
     hashVal = hash(val);
     lists[hashVal].push_front(val);
 }
 
-void FNVHashTable::insert(uint64_t val) {
+void FNVHashTable::insert(uint32_t val) {
     hashVal = hash(val);
     lists[hashVal].push_front(val);
 }
 
 //Trivial Hash Algorithm: mask bottom log2(tableSize) bits out of val
-uint64_t TrivialHashTable::hash(uint64_t val) {
+uint32_t TrivialHashTable::hash(uint32_t val) {
     uint64_t mask = 1;
     for (short i = 0; i < numBitsToMask - 1; i++) {
         mask = mask << 1;
@@ -39,8 +39,13 @@ uint32_t TrivialHashTable::roundUpBaseTwo(uint32_t num) {
     return num;
 }
 
-//Fowler–Noll–Vo 1a Hash Algorithm
-uint64_t FNVHashTable::hash(uint64_t val) {
-    //do something to val
+//FNV-1a Hash Algorithm
+uint32_t FNVHashTable::hash(uint32_t val) {
+    //hash := FNV_offset_basis
+
+    //for each byte_of_data to be hashed do
+    //    hash := hash XOR byte_of_data
+    //hash := hash × FNV_prime
+
     return val;
 }

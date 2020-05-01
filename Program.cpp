@@ -82,7 +82,7 @@ void Program::readIntFile() {
 
 void Program::testAlgorithms() {
     hashTableTrivial = new TrivialHashTable(data.size());
-    hashTableFNV = new FNVHashTable(data.size());
+    hashTableFNV = new FNVHashTable();
 
     cout << "Inserting into trivial hash table..." << endl;
     for (auto & num : data) {

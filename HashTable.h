@@ -3,6 +3,9 @@
 
 #ifndef HASHTABLE_H
 #define HASHTABLE_H
+#define MAX_UINT_32 0xFFFFFFFF // 2^32-1
+#define FNV_offset_basis 1
+#define FNV_prime 2
 
 #include <iostream>
 #include <array>
@@ -15,47 +18,46 @@ class HashTable {
 protected:
     uint32_t numTotalLists;
     uint32_t numNonEmptyLists;
-    uint64_t hashVal;
-    virtual uint64_t hash(uint64_t) = 0;
+    uint32_t hashVal;
+    virtual uint32_t hash(uint32_t) = 0;
 public:
     HashTable();
     virtual ~HashTable() = default;
-    virtual void insert(uint64_t) = 0;
+    virtual void insert(uint32_t) = 0;
 };
 
 class TrivialHashTable : public HashTable {
 private:
-    uint64_t hash(uint64_t) override;
+    uint32_t hash(uint32_t) override;
     uint32_t roundUpBaseTwo(uint32_t);
-    forward_list<uint64_t> * lists;
+    forward_list<uint32_t> * lists;
     short numBitsToMask;
 public:
     explicit TrivialHashTable(uint32_t numIntegers) : HashTable() {
         //Trivial hash algorithm uses a table size that is a power of two.
         numTotalLists = roundUpBaseTwo(numIntegers) / 4;
-        lists = new forward_list<uint64_t> [numTotalLists];
+        lists = new forward_list<uint32_t> [numTotalLists];
         numBitsToMask = log2(numTotalLists);
     }
     ~TrivialHashTable() override {
         delete [] lists;
     }
-    void insert(uint64_t) override;
+    void insert(uint32_t) override;
 };
 
 class FNVHashTable : public HashTable {
 private:
-    uint64_t hash(uint64_t) override;
-    forward_list<uint64_t> * lists;
+    uint32_t hash(uint32_t) override;
+    forward_list<uint32_t> * lists;
 public:
-    explicit FNVHashTable(uint32_t numIntegers) : HashTable() {
-        numTotalLists = numIntegers;
-        //look at FNV wiki page for how to determine size of hash table (i.e. how to modify numTotalLists)
-        lists = new forward_list<uint64_t> [numTotalLists];
+    explicit FNVHashTable() : HashTable() {
+        numTotalLists = MAX_UINT_32;
+        lists = new forward_list<uint32_t> [numTotalLists];
     }
     ~FNVHashTable() override {
         delete [] lists;
     }
-    void insert(uint64_t) override;
+    void insert(uint32_t) override;
 };
 
 #endif //HASHTABLE_H

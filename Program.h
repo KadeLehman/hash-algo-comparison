@@ -20,7 +20,7 @@ private:
     HashTable * hashTableTrivial;
     HashTable * hashTableFNV;
     string iFileName;
-    vector<uint64_t> data;
+    vector<uint32_t> data;
 public:
     Program();
     ~Program();

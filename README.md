@@ -26,7 +26,8 @@ algorithm is still relatively easy to crack and is regarded as a non-cryptograph
 Both the FNV offset basis and FNV prime are pre-determined values based on what "bit flavor" of
 FNV you choose and were created through mathematical procedures that the creators of FNV developed.
 The FNV numbers help naturally reduce collisions since they help spread inserted values evenly across the
-key space of the hash table.
+key space of the hash table. The "bit flavor" I implement is the 32-bit flavor of FNV-1a because my largest
+integer value I may be inserting is 599,999 which is 2^20 when rounded up to the nearest power of two.
 
 ## Important Notes
 
