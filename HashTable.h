@@ -5,7 +5,7 @@
 #define HASHTABLE_H
 #define MAX_UINT_24 0xFFFFFF // 2^24-1
 #define NUM_BYTES_PER_INT 4
-#define FNV_offset_basis 0x811c9dc5
+#define FNV_offset_basis 0x811C9DC5
 #define FNV_prime 0x01000193
 
 #include <iostream>

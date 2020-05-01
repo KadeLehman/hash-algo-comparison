@@ -47,11 +47,12 @@ uint32_t FNVHashTable::hash(uint32_t val) {
 
     for (int i = 0; i < NUM_BYTES_PER_INT; i++) {
         valSegment &= mask;
-        //store result
         hash ^= valSegment;
         hash *= FNV_prime;
         valSegment = val >> 4;
     }
 
-    return val;
+    //The program xor-folds the hash here in order to produce a 24-bit hash value.
+    hash = (hash >> 24) ^ (hash & MAX_UINT_24);
+    return hash;
 }
