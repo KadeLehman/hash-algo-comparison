@@ -32,8 +32,7 @@ private:
 public:
     explicit TrivialHashTable(uint32_t numIntegers) : HashTable() {
         //Trivial hash algorithm uses a table size that is a power of two.
-        numTotalLists = numIntegers;
-        numTotalLists = roundUpBaseTwo(numTotalLists);
+        numTotalLists = roundUpBaseTwo(numIntegers) / 4;
         lists = new forward_list<uint64_t> [numTotalLists];
         numBitsToMask = log2(numTotalLists);
     }

@@ -1,11 +1,16 @@
+/// Citations:
+///     Code for Program::createIntegerFile inspired by https://stackoverflow.com/a/10330562/10252771
+
 #ifndef PROGRAM_H
 #define PROGRAM_H
+#define NUM_INTEGERS 500000
 
 #include <iostream>
 #include <string>
 #include <vector>
 #include <fstream>
 #include <cstdint>
+#include <random>
 #include "HashTable.h"
 using namespace std;
 
@@ -19,6 +24,7 @@ public:
     Program();
     ~Program();
     void run();
+    void createIntegerFile();
     void readControlFile();
     void readIntFile();
     void testAlgorithms();
