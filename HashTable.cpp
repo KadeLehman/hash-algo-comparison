@@ -18,7 +18,7 @@ void FNVHashTable::insert(uint32_t val) {
 
 //Trivial Hash Algorithm: mask bottom log2(tableSize) bits out of val
 uint32_t TrivialHashTable::hash(uint32_t val) {
-    uint64_t mask = 1;
+    uint32_t mask = 1;
     for (short i = 0; i < numBitsToMask - 1; i++) {
         mask = mask << 1;
         mask += 1;
@@ -41,11 +41,17 @@ uint32_t TrivialHashTable::roundUpBaseTwo(uint32_t num) {
 
 //FNV-1a Hash Algorithm
 uint32_t FNVHashTable::hash(uint32_t val) {
-    //hash := FNV_offset_basis
+    uint32_t valSegment = val;
+    uint32_t mask = 0xFF; //mask one byte at a time
+    uint32_t hash = FNV_offset_basis;
 
-    //for each byte_of_data to be hashed do
-    //    hash := hash XOR byte_of_data
-    //hash := hash × FNV_prime
+    for (int i = 0; i < NUM_BYTES_PER_INT; i++) {
+        valSegment &= mask;
+        //store result
+        hash ^= valSegment;
+        hash *= FNV_prime;
+        valSegment = val >> 4;
+    }
 
     return val;
 }
