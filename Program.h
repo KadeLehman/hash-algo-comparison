@@ -10,6 +10,7 @@
 #include <vector>
 #include <fstream>
 #include <cstdint>
+#include <ctime>
 #include <random>
 #include "HashTable.h"
 using namespace std;
@@ -24,7 +25,7 @@ public:
     Program();
     ~Program();
     void run();
-    void createIntegerFile();
+    static void createIntegerFile();
     void readControlFile();
     void readIntFile();
     void testAlgorithms();
