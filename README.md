@@ -1,5 +1,4 @@
 # Performance Comparison of Two Hashing Algorithms with Integer Keys
-## Introduction
 
 This project will put a trivial and non-trivial hashing algorithm to the test; an unevenly
 distributed list of integers from 100,000 to 599,999 (500,000 total integers) will be inserted
