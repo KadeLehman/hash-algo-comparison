@@ -52,7 +52,7 @@ uint32_t FNVHashTable::hash(uint32_t val) {
         valSegment = val >> 4;
     }
 
-    //The program xor-folds the hash here in order to produce a 24-bit hash value.
-    hash = (hash >> 24) ^ (hash & MAX_UINT_24);
+    //The program xor-folds the hash here in order to produce a 20-bit hash value.
+    hash = (hash >> 20) ^ (hash & MAX_UINT_20);
     return hash;
 }

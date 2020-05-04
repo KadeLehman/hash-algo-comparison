@@ -4,9 +4,7 @@
 This project will put a trivial and non-trivial hashing algorithm to the test; an unevenly
 distributed list of integers from 100,000 to 599,999 (500,000 total integers) will be inserted
 into my custom hash table. The program is designed to display how much time each set of
-insertions take with each algorithm.
-
-Here is a description of the trivial algorithm, as stated on Wikipedia:
+insertions take with each algorithm. Here is a description of the trivial algorithm, as stated on Wikipedia:
 
 > If the keys are uniformly or sufficiently uniformly distributed over the key space,
 so that the key values are essentially random, they may be considered to be already 'hashed'.
@@ -40,10 +38,10 @@ algorithm is still relatively easy to crack and is regarded as a non-cryptograph
 Both the FNV offset basis and FNV prime are pre-determined values based on what "bit flavor" of
 FNV you choose and were created through mathematical procedures that the creators of FNV developed.
 The FNV numbers help naturally reduce collisions since they help spread inserted values evenly across the
-key space of the hash table. The "bit flavor" of FNV algorithm I implement is the 32-bit flavor because my
-largest integer value I may be inserting is 599,999 which is 2^20 when rounded up to the nearest power of two.
+key space of the hash table. The "bit flavor" of FNV algorithm I implement is the 32-bit flavor, because my
+largest integer value I may be inserting is 599,999. This number is 2^20 when rounded up to the nearest power of two.
 Because I can combine the FNV algorithm with xor-folding, a topic explained by FNV creator Landon Curt Noll at
-http://www.isthe.com/chongo/tech/comp/fnv/index.html#xor-fold, the FNV table must only hold about 2^24
-singly-linked lists. This initially takes up 128 times more memory space than the trivial table, but since
-STL forward_lists don't take up much space to begin with the cost of space is well worth the lower collision
-rate after inserting 500,000 integers.
+http://www.isthe.com/chongo/tech/comp/fnv/index.html#xor-fold, the FNV table only has to hold about 2^20
+singly-linked lists. Before inserting values, this initially takes up eight times more memory space than the
+trivial table. However, since STL forward_lists don't take up much space to begin with, the cost of space is well
+worth the lower collision rate after inserting 500,000 integers.

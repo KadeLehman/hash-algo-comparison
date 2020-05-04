@@ -3,7 +3,7 @@
 
 #ifndef HASHTABLE_H
 #define HASHTABLE_H
-#define MAX_UINT_24 0xFFFFFF // 2^24-1
+#define MAX_UINT_20 0xFFFFF // 2^20-1
 #define NUM_BYTES_PER_INT 4
 #define FNV_offset_basis 0x811C9DC5
 #define FNV_prime 0x01000193
@@ -52,7 +52,7 @@ private:
     forward_list<uint32_t> * lists;
 public:
     explicit FNVHashTable() : HashTable() {
-        numTotalLists = MAX_UINT_24;
+        numTotalLists = MAX_UINT_20;
         lists = new forward_list<uint32_t> [numTotalLists];
     }
     ~FNVHashTable() override {
