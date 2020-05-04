@@ -14,7 +14,21 @@ In this case, any number of any bits in the key may be dialed out and collated a
 into the hash table. A simple such hash function would be to mask off the bottom m bits
 to use as an index into a table of size 2^m.
 
-For simplicity, I will implement the "simple" version as stated above in the last sentence.
+For simplicity, I will implement the "simple" version as stated above in the last sentence. Note that the
+trivial hash function will cause many hashtable collisions if the collection of integers
+to be inserted is unevenly distributed. This is how my data is, so this weakness is reflected in the
+slower runtime of inserting my data into the trivial hash table. Also, any hash function will cause
+collisions when duplicate values are inserted, but both of my hash tables receive the same duplicates.
+As a result, this has negligible effect on the difference in insertion time into tables using trivial
+versus non-trivial algorithms.
+
+Since the program is inserting 500,000
+integers, it will round up the number 500,000 to the nearest power of two, which is 2^19 (524,288). I then
+divide this by 4 so that the hash table takes up less space, since the program then makes the hash table
+this size (in number of forward_lists). The program then takes the log-base-two of this new number to get
+17, the number of bits to use as the hash for any given element being inserted into the table. The first
+two bits of each inserted integer are ignored, so the hash function just returns hash values in the range
+of zero to (tableSize - 1).
 
 Below is an adapted description of the Fowler–Noll–Vo-1a hash algorithm. I chose the 1a version, because data
 hashed through this version is harder to decrypt and has the same runtime as FNV-1. However, this
@@ -28,20 +42,8 @@ FNV you choose and were created through mathematical procedures that the creator
 The FNV numbers help naturally reduce collisions since they help spread inserted values evenly across the
 key space of the hash table. The "bit flavor" of FNV algorithm I implement is the 32-bit flavor because my
 largest integer value I may be inserting is 599,999 which is 2^20 when rounded up to the nearest power of two.
-
-## Important Notes
-
-Note that the trivial hash function will cause many hashtable collisions if the collection of integers
-to be inserted is unevenly distributed. This is how my data is, so this weakness is reflected in the
-slower runtime of inserting my data into the trivial hash table. Also, any hash function will cause
-collisions when duplicate values are inserted, but both of my hash tables receive the same duplicates.
-As a result, this has negligible effect on the difference in insertion time into tables using trivial
-versus non-trivial algorithms.
-
-Here is another note specifically about my trivial hash function. Since the program is inserting 500,000
-integers, it will round up the number 500,000 to the nearest power of two, which is 2^19 (524,288). I then
-divide this by 4 so that the hash table takes up less space, since the program then makes the hash table
-this size (in number of forward_lists). The program then takes the log-base-two of this new number to get
-17, the number of bits to use as the hash for any given element being inserted into the table. The first
-two bits of each inserted integer are ignored, so the hash function just returns hash values in the range
-of zero to (tableSize - 1).
+Because I can combine the FNV algorithm with xor-folding, a topic explained by FNV creator Landon Curt Noll at
+http://www.isthe.com/chongo/tech/comp/fnv/index.html#xor-fold, the FNV table must only hold about 2^24
+singly-linked lists. This initially takes up 128 times more memory space than the trivial table, but since
+STL forward_lists don't take up much space to begin with the cost of space is well worth the lower collision
+rate after inserting 500,000 integers.
