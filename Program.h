@@ -11,9 +11,14 @@
 #include <fstream>
 #include <cstdint>
 #include <ctime>
+#include <chrono>
 #include <random>
 #include "HashTable.h"
 using namespace std;
+using std::chrono::steady_clock;
+using time_point = std::chrono::steady_clock::time_point;
+using std::chrono::duration_cast;
+using std::chrono::microseconds;
 
 class Program {
 private:

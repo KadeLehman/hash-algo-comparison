@@ -83,15 +83,25 @@ void Program::readIntFile() {
 void Program::testAlgorithms() {
     hashTableTrivial = new TrivialHashTable(data.size());
     hashTableFNV = new FNVHashTable();
+    const int oneMillion = 1000000;
+    time_point start;
+    time_point end;
 
+    ///Test Trivial
     cout << "Inserting into trivial hash table..." << endl;
-    for (auto & num : data)
-        hashTableTrivial->insert(num);
-    cout << "Inserted all data into trivial hash table." << endl;
-    cout << "Inserting into FNV hash table..." << endl;
-    for (auto & num : data)
-        hashTableFNV->insert(num);
-    cout << "Inserted all data into FNV hash table." << endl;
+    start = steady_clock::now();
+    for (auto & num : data) hashTableTrivial->insert(num);
+    end = steady_clock::now();
+    cout << "Inserted all data into trivial hash table in "
+         << duration_cast<microseconds>(end - start).count() / oneMillion
+         << " seconds." << endl;
 
-    //TODO: Implement std::chrono, which will print algorithm runtimes to the terminal.
+    ///Test FNV
+    cout << "Inserting into FNV hash table..." << endl;
+    start = steady_clock::now();
+    for (auto & num : data) hashTableFNV->insert(num);
+    end = steady_clock::now();
+    cout << "Inserted all data into FNV hash table in "
+         << duration_cast<microseconds>(end - start).count() / oneMillion
+         << " seconds." << endl;
 }
