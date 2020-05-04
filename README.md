@@ -1,7 +1,7 @@
 # Performance Comparison of Two Hashing Algorithms with Integer Keys
 
-This project will put a trivial and non-trivial hashing algorithm to the test; an unevenly
-distributed list of integers from 100,000 to 599,999 (500,000 total integers) will be inserted
+This project will put two hashing algorithms to the test; one is trivial, one is not. The program will insert
+an unevenly distributed list of integers from 100,000 to 599,999 (500,000 total integers)
 into my custom hash table. The program is designed to display how much time each set of
 insertions take with each algorithm. Here is a description of the trivial algorithm, as stated on Wikipedia:
 
@@ -44,3 +44,9 @@ http://www.isthe.com/chongo/tech/comp/fnv/index.html#xor-fold, the FNV table onl
 singly-linked lists. Before inserting values, this initially takes up eight times more memory space than the
 trivial table. However, since STL forward_lists don't take up much space to begin with, the cost of space is well
 worth the lower collision rate after inserting 500,000 integers.
+
+##Conclusion
+
+The FNV hash table handles insertions in about half the time compared to the trivial hash table.
+The non-trivial hashing algorithm has proven to be faster than the trivial hashing algorithm when
+inserting the amount, distribution, and type of data I have provided.

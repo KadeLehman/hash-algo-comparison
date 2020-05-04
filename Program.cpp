@@ -12,7 +12,7 @@ Program::~Program() {
 }
 
 void Program::run() {
-    //createIntegerFile();
+    //createIntegerFile(); //Uncomment if you want to test the algorithms with a different integer set of the same size
     readControlFile();
     testAlgorithms();
 }
@@ -22,7 +22,7 @@ void Program::createIntegerFile() {
     ofstream file("intList.txt");
     int first_lo = 100000, first_hi = 199999; // 1/2 chance to choose a number in [first_lo, first_hi]
     int second_lo = 200000, second_hi = 499999; // 1/6 chance to choose a number in [second_lo, second_hi]
-    int third_lo = 500000, third_hi = 599999;// 1/3 chance to choose a number in [third_lo, third_hi]
+    int third_lo = 500000, third_hi = 599999; // 1/3 chance to choose a number in [third_lo, third_hi]
     srandom(time(nullptr));
 
     ///Generating and outputting integers to file
@@ -36,51 +36,55 @@ void Program::createIntegerFile() {
         else // 4,5 = 2/6 = 1/3 probability
             file << random() % (third_hi - third_lo + 1) + third_lo << endl;
     }
+
+    ///Close output file
     file.close();
 }
 
 void Program::readControlFile() {
 
+    ///Open input file
     ifstream iFile("ControlFile.txt");
-
     if (!iFile.is_open()) {
         cout << "Could not open control file." << endl;
         exit(200);
     }
 
-    //Reads line by line, running code based on each provided command in the file
+    ///Reads line by line, running code based on each provided command in the file
     string str;
-    while (iFile >> str) {
+    while (iFile >> str)
         if (str == "or") {
             iFile >> str;
             iFileName = str;
             readIntFile();
         }
-    }
 
+    ///Close input file
     iFile.close();
 }
 
 
 void Program::readIntFile() {
 
+    ///Open input file
     ifstream iFile(iFileName);
-
     if (!iFile.is_open()) {
         cout << "Could not open integer file." << endl;
         exit(200);
     }
 
-    //Reads the integer, then inserts it into vector.
+    ///Reads the integer, then inserts it into vector.
     string str = "empty_TEMP_STRING";
     while (getline(iFile, str)) {
         data.push_back(stoull(str));
     }
 
+    ///Close input file
     iFile.close();
 }
 
 void Program::testAlgorithms() {
+    ///Setup
     hashTableTrivial = new TrivialHashTable(data.size());
     hashTableFNV = new FNVHashTable();
     const int oneMillion = 1000000;

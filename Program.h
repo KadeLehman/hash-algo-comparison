@@ -1,5 +1,5 @@
 /// Citations:
-///     Code for Program::createIntegerFile inspired by https://stackoverflow.com/a/10330562/10252771
+///     Code for Program::createIntegerFile inspired by Ivaylo Strandjev at https://stackoverflow.com/a/10330562/10252771
 
 #ifndef PROGRAM_H
 #define PROGRAM_H
