@@ -55,5 +55,5 @@ worth the lower collision rate when inserting 500,000 integers.
 
 On average, it takes about the same amount of time to insert 500,000 integers when the set of integers is
 distributed as specified in my program. However, far less collisions occur with the FNV hash function.
-This means that searching and/or deleting of a large number of integers in the FNV table will take
+This means that searching and/or deleting of a large number of integers from the FNV table will take
 much less time relative to the trivial table overall.

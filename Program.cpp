@@ -99,6 +99,7 @@ void Program::testAlgorithms() {
     cout << "Inserted all data into trivial hash table in "
          << duration_cast<microseconds>(end - start).count() / static_cast<double>(oneMillion)
          << " seconds." << endl;
+    //TODO: Print number of collisions for trivial
 
     ///Test FNV
     cout << "Inserting into FNV hash table..." << endl;
@@ -108,4 +109,5 @@ void Program::testAlgorithms() {
     cout << "Inserted all data into FNV hash table in "
          << duration_cast<microseconds>(end - start).count() / static_cast<double>(oneMillion)
          << " seconds." << endl;
+    //TODO: Print number of collisions for FNV
 }
