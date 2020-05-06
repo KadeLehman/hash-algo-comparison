@@ -2,7 +2,6 @@
 
 HashTable::HashTable() {
     numTotalLists = 0;
-    numNonEmptyLists = 0;
     hashVal = 0;
 }
 

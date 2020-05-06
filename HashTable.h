@@ -9,7 +9,6 @@
 #define FNV_prime 0x01000193
 
 #include <iostream>
-#include <array>
 #include <forward_list>
 #include <cstdint>
 #include <cmath>
@@ -18,7 +17,6 @@ using namespace std;
 class HashTable {
 protected:
     uint32_t numTotalLists;
-    uint32_t numNonEmptyLists;
     uint32_t hashVal;
     virtual uint32_t hash(uint32_t) = 0;
 public:
@@ -35,14 +33,12 @@ private:
     short numBitsToMask;
 public:
     explicit TrivialHashTable(uint32_t numIntegers) : HashTable() {
-        //Trivial hash algorithm uses a table size that is a power of two.
+        ///Trivial hash algorithm uses a table size that is a power of two.
         numTotalLists = roundUpBaseTwo(numIntegers) / 4;
         lists = new forward_list<uint32_t> [numTotalLists];
         numBitsToMask = log2(numTotalLists);
     }
-    ~TrivialHashTable() override {
-        delete [] lists;
-    }
+    ~TrivialHashTable() override { delete [] lists; }
     void insert(uint32_t) override;
 };
 
@@ -55,9 +51,7 @@ public:
         numTotalLists = MAX_UINT_20;
         lists = new forward_list<uint32_t> [numTotalLists];
     }
-    ~FNVHashTable() override {
-        delete [] lists;
-    }
+    ~FNVHashTable() override { delete [] lists; }
     void insert(uint32_t) override;
 };
 
