@@ -43,7 +43,7 @@ Because I can combine the FNV algorithm with xor-folding, a topic explained by F
 http://www.isthe.com/chongo/tech/comp/fnv/index.html#xor-fold, the FNV table only has to hold about 2^20
 singly-linked lists. Before inserting values, this initially takes up eight times more memory space than the
 trivial table. However, since STL forward_lists don't take up much space to begin with, the cost of space is well
-worth the lower collision rate after inserting 500,000 integers.
+worth the lower collision rate when inserting 500,000 integers.
 
 ##Conclusion
 
