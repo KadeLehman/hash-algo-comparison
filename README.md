@@ -47,6 +47,8 @@ worth the lower collision rate after inserting 500,000 integers.
 
 ##Conclusion
 
-The FNV hash table handles insertions in about half the time compared to the trivial hash table.
-The non-trivial hashing algorithm has proven to be faster than the trivial hashing algorithm when
-inserting the amount, distribution, and type of data I have provided.
+The FNV hash table tends to handle insertions faster than the trivial hash table. Upon much testing,
+I have found that it can be up to about twice as fast. The FNV table insertions are rarely slower than
+the trivial table, and it is not by much when it is. The non-trivial hashing algorithm has proven
+to generally be faster than the trivial hashing algorithm when inserting the amount, distribution,
+and type of data I have provided.
