@@ -17,7 +17,6 @@ using namespace std;
 class HashTable {
 protected:
     uint32_t numTotalLists;
-    uint32_t hashVal;
     virtual uint32_t hash(uint32_t) = 0;
 public:
     HashTable();

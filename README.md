@@ -2,8 +2,12 @@
 
 This project will put two hashing algorithms to the test; one is trivial, one is not. The program will insert
 an unevenly distributed list of integers from 100,000 to 599,999 (500,000 total integers)
-into my custom hash table. The program is designed to display how much time each set of
-insertions take with each algorithm. Here is a description of the trivial algorithm, as stated on Wikipedia:
+into my custom hash table. The program is designed to display how much time and collisions the hash tables
+take when inserting the same integers. 
+
+## Trivial Hashing
+
+Here is a description of the trivial algorithm, as stated on Wikipedia:
 
 > If the keys are uniformly or sufficiently uniformly distributed over the key space,
 so that the key values are essentially random, they may be considered to be already 'hashed'.
@@ -16,8 +20,8 @@ trivial hash function will cause many hashtable collisions if the collection of 
 to be inserted is unevenly distributed. This is how my data is, so this weakness is reflected in the
 slower runtime of inserting my data into the trivial hash table. Also, any hash function will cause
 collisions when duplicate values are inserted, but both of my hash tables receive the same duplicates.
-As a result, this has negligible effect on the difference in insertion time into tables using trivial
-versus non-trivial algorithms.
+As a result, this has tiny effect on the difference number of collision using the trivial versus non-trivial
+hashing algorithm.
 
 Since the program is inserting 500,000
 integers, it will round up the number 500,000 to the nearest power of two, which is 2^19 (524,288). I then
@@ -26,6 +30,8 @@ this size (in number of forward_lists). The program then takes the log-base-two 
 17, the number of bits to use as the hash for any given element being inserted into the table. The first
 two bits of each inserted integer are ignored, so the hash function just returns hash values in the range
 of zero to (tableSize - 1).
+
+## FNV-1a Hashing
 
 Below is an adapted description of the Fowler–Noll–Vo-1a hash algorithm. I chose the 1a version, because data
 hashed through this version is harder to decrypt and has the same runtime as FNV-1. However, this
@@ -47,8 +53,7 @@ worth the lower collision rate when inserting 500,000 integers.
 
 ##Conclusion
 
-The FNV hash table tends to handle insertions faster than the trivial hash table. Upon much testing,
-I have found that it can be up to about twice as fast. The FNV table insertions are rarely slower than
-the trivial table, and it is not by much when it is. The non-trivial hashing algorithm has proven
-to generally be faster than the trivial hashing algorithm when inserting the amount, distribution,
-and type of data I have provided.
+On average, it takes about the same amount of time to insert 500,000 integers when the set of integers is
+distributed as specified in my program. However, far less collisions occur with the FNV hash function.
+This means that searching and/or deleting of a large number of integers in the FNV table will take
+much less time relative to the trivial table overall.

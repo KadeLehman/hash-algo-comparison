@@ -2,24 +2,21 @@
 
 HashTable::HashTable() {
     numTotalLists = 0;
-    hashVal = 0;
 }
 
 void TrivialHashTable::insert(uint32_t val) {
-    hashVal = hash(val);
-    lists[hashVal].push_front(val);
+    lists[hash(val)].push_front(val);
 }
 
 void FNVHashTable::insert(uint32_t val) {
-    hashVal = hash(val);
-    lists[hashVal].push_front(val);
+    lists[hash(val)].push_front(val);
 }
 
 //Trivial Hash Algorithm: mask bottom log2(tableSize) bits out of val
 uint32_t TrivialHashTable::hash(uint32_t val) {
     uint32_t mask = 1;
     for (short i = 0; i < numBitsToMask - 1; i++) {
-        mask = mask << 1;
+        mask <<= 1;
         mask += 1;
     }
     val &= mask;
@@ -34,8 +31,7 @@ uint32_t TrivialHashTable::roundUpBaseTwo(uint32_t num) {
     num |= num >> 4;
     num |= num >> 8;
     num |= num >> 16;
-    num++;
-    return num;
+    return ++num;
 }
 
 //FNV-1a Hash Algorithm
@@ -48,10 +44,10 @@ uint32_t FNVHashTable::hash(uint32_t val) {
         valSegment &= mask;
         hash ^= valSegment;
         hash *= FNV_prime;
-        valSegment = val >> 4;
+        valSegment = val >>= 4;
     }
 
     //The program xor-folds the hash here in order to produce a 20-bit hash value.
     hash = (hash >> 20) ^ (hash & MAX_UINT_20);
-    return hash;
+    return hash - 1;
 }
