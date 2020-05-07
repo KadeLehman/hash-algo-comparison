@@ -1,7 +1,13 @@
 #include "HashTable.h"
 
 HashTable::HashTable() {
+    lists = nullptr;
     numTotalLists = 0;
+    numCollisions = 0;
+}
+
+uint64_t HashTable::getNumCollisions() const {
+    return numCollisions;
 }
 
 void TrivialHashTable::insert(uint32_t val) {
@@ -44,7 +50,7 @@ uint32_t FNVHashTable::hash(uint32_t val) {
         valSegment &= mask;
         hash ^= valSegment;
         hash *= FNV_prime;
-        valSegment = val >>= 4;
+        valSegment = val >>= 8; //shift away used byte to prepare next byte for masking
     }
 
     //The program xor-folds the hash here in order to produce a 20-bit hash value.

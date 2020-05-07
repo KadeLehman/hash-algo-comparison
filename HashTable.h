@@ -16,11 +16,14 @@ using namespace std;
 
 class HashTable {
 protected:
-    uint32_t numTotalLists;
+    forward_list<uint32_t> * lists;
     virtual uint32_t hash(uint32_t) = 0;
+    uint32_t numTotalLists;
+    uint64_t numCollisions;
 public:
     HashTable();
     virtual ~HashTable() = default;
+    uint64_t getNumCollisions() const;
     virtual void insert(uint32_t) = 0;
 };
 
@@ -28,7 +31,6 @@ class TrivialHashTable : public HashTable {
 private:
     uint32_t hash(uint32_t) override;
     uint32_t roundUpBaseTwo(uint32_t);
-    forward_list<uint32_t> * lists;
     short numBitsToMask;
 public:
     explicit TrivialHashTable(uint32_t numIntegers) : HashTable() {
@@ -44,7 +46,6 @@ public:
 class FNVHashTable : public HashTable {
 private:
     uint32_t hash(uint32_t) override;
-    forward_list<uint32_t> * lists;
 public:
     explicit FNVHashTable() : HashTable() {
         numTotalLists = MAX_UINT_20;
