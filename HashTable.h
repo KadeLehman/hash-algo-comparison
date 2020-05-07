@@ -10,6 +10,7 @@
 
 #include <iostream>
 #include <forward_list>
+#include <iterator>
 #include <cstdint>
 #include <cmath>
 using namespace std;
@@ -19,7 +20,6 @@ protected:
     forward_list<uint32_t> * lists;
     virtual uint32_t hash(uint32_t) = 0;
     uint32_t numTotalLists;
-    uint64_t numCollisions;
 public:
     HashTable();
     virtual ~HashTable() = default;

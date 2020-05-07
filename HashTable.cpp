@@ -3,10 +3,18 @@
 HashTable::HashTable() {
     lists = nullptr;
     numTotalLists = 0;
-    numCollisions = 0;
 }
 
 uint64_t HashTable::getNumCollisions() const {
+    uint64_t numCollisions = 0;
+    uint32_t listSize = 0;
+    for (uint32_t i = 0; i < numTotalLists; i++) {
+        auto first = lists[i].begin();
+        auto last = lists[i].end();
+        listSize = distance(first,last);
+        if (listSize > 1)
+            numCollisions += listSize - 1;
+    }
     return numCollisions;
 }
 
