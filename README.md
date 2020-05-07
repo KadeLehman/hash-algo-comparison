@@ -51,7 +51,7 @@ singly-linked lists. Before inserting values, this initially takes up eight time
 trivial table. However, since STL forward_lists don't take up much space to begin with, the cost of space is well
 worth the lower collision rate when inserting 500,000 integers.
 
-##Conclusion
+## Conclusion
 
 On average, it takes about the same amount of time to insert 500,000 integers when the set of integers is
 distributed as specified in my program. However, far less collisions occur with the FNV hash function.
